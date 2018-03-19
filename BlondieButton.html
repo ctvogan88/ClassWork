@@ -38,20 +38,21 @@
 
       audio.play();
 
-      var isPlaying = false
+      var isPlaying = true;
 
       $(document).ready(function () {
         $("#stop").on("click", function () {
-          if (!isPlaying) {
-            // Play
-            isPlaying = true;
-            audio.play();
-            $(this).text("STOP!")
-          } else {
+          if (isPlaying) {
             // Stop 
             isPlaying = false;
             audio.pause();
             $(this).text("PLAY!");
+          } else {
+            // Play
+            isPlaying = true;
+            audio.play();
+            $(this).text("STOP!")
+            
           };
         });
       });
