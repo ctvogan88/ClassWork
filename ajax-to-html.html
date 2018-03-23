@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <title>Favorite Movies</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7"
+    crossorigin="anonymous">
+</head>
+
+<body>
+  <div class="container">
+    <h2>Basic Table</h2>
+    <p>The .table class adds basic styling (light padding and only horizontal dividers) to a table:</p>
+    <table class="table">
+      <thead>
+        <tr>
+          <th>Movie Name</th>
+          <th>Year</th>
+          <th>Rating</th>
+          <th>Actors</th>
+        </tr>
+      </thead>
+      <tbody>
+        <!-- Results Go Here -->
+      </tbody>
+    </table>
+  </div>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript">
+    // The below code fills in the first row of the table
+    var movie1 = "Mr. Nobody";
+    var movie2 = "Fight Club";
+    var movie3 = "The Sound of Music";
+    var movie4 = "Pumping Iron";
+    var movie5 = "The Lion King";
+
+
+    movieData(movie1);
+    movieData(movie2);
+    movieData(movie3);
+    movieData(movie4);
+    movieData(movie5);
+    
+
+
+    // Repeat the above logic to add rows for two more movies of your choice
+
+    // BONUS: Once complete, try to make your code as DRY as possible through the use of functions
+
+    function movieData(movie) {
+
+      console.log(movie);
+
+      var queryURL = "https://www.omdbapi.com/?t=" + movie + "&y=&plot=short&apikey=trilogy";
+      
+      $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function (response) {
+
+        console.log(response);
+
+        // Obtain a reference to the tbody element in the DOM
+        var table = $("tbody");
+
+        // Create and save a reference to new empty table row
+        var newRow = $("<tr>");
+        console.log(newRow);
+
+        // Create and save references to 3 td elements containing the Title, Year, and Actors from the AJAX response object
+        var tc = [
+          response.Title,
+          response.Year,
+          response.Rated,
+          response.Actors,
+        ]
+
+        // Append the td elements to the new table row
+        for (var i = 0; i < tc.length; i++) {
+          newRow.append("<td>" + tc[i] + "</td>");
+        }
+
+        // Append the table row to the tbody element
+        table.append(newRow);
+
+      });
+
+    }
+
+  </script>
+</body>
+
+</html>

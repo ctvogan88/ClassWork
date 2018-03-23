@@ -7,112 +7,132 @@
 
 <head>
 
-  <meta charset="UTF-8">
-  <title>Simple Timer</title>
+    <meta charset="UTF-8">
+    <title>Simple Timer</title>
+    <style>
+        .bg {
+            /* The image used */
+            background-image: url("https://i.ytimg.com/vi/StKVS0eI85I/maxresdefault.jpg");
+
+            /* Full height */
+            height: 100%;
+
+            /* Center and scale the image nicely */
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .time-left{
+            color: white;
+        }
+    </style>
 
 </head>
 
 <body>
+    <div class="bg">
+        <div class="container">
+            <div class="header jumbotron myBackground">
+                <div id="time-left"></div>
+                <button id="stop" style="center">STOP!</button>
+                <!-- jQuery -->
+                <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
-  <div id="time-left">
-    <button id="stop" style="center">STOP!</button>
-  </div>
-
-  <!-- jQuery -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-
-  <!-- Script -->
-  <script>
-
-
-    // Step 1:
-    // Use the following link inside the Audio function below:
-    // https://p.scdn.co/mp3-preview/ed5a443bc86176135ebca8a114f66f4d814d4c90
-    var audio = new Audio("https://p.scdn.co/mp3-preview/ed5a443bc86176135ebca8a114f66f4d814d4c90");
-
-    var doIt = confirm('Play the music demo?!');
+                <!-- Script -->
+                <script>
 
 
+                    // Step 1:
+                    // Use the following link inside the Audio function below:
+                    // https://p.scdn.co/mp3-preview/ed5a443bc86176135ebca8a114f66f4d814d4c90
+                    var audio = new Audio("https://p.scdn.co/mp3-preview/ed5a443bc86176135ebca8a114f66f4d814d4c90");
 
-    if (doIt) {
-
-      audio.play();
-
-      var isPlaying = true;
-
-      $(document).ready(function () {
-        $("#stop").on("click", function () {
-          if (isPlaying) {
-            // Stop 
-            isPlaying = false;
-            audio.pause();
-            $(this).text("PLAY!");
-          } else {
-            // Play
-            isPlaying = true;
-            audio.play();
-            $(this).text("STOP!")
-            
-          };
-        });
-      });
-
-      //var stopIt = confirm('Stop the music demo?!')
-
-      //  Step 2: do the following between the --- comments
-      //  after 5 seconds, execute the fiveSeconds function
-      //  after 10 seconds, execute the tenSeconds function
-      //  after 15 seconds, execute the timeUp function
-      // ---------------------
-
-      setTimeout(fiveSeconds, 5000);
-      setTimeout(tenSeconds, 10000);
-      setTimeout(timeUp, 15000);
-
-      // ---------------------
+                    var doIt = confirm('Play the music demo?!');
 
 
-      // Step 3:
-      // Fill in the blanks to these functions.
-      function fiveSeconds() {
 
-        // in the element with an id of time-left add an h2 saying About 10 Seconds Left!
-        $("#time-left").append("<h2>About 10 sec left!</h2>")
+                    if (doIt) {
 
-        //document.getElementById("time-left").innerHTML = "About 10 seconds left!";
-        // console log 10 seconds left
-        console.log("10 sec left");
-      }
+                        audio.play();
+
+                        var isPlaying = true;
+
+                        $(document).ready(function () {
+                            $("#stop").on("click", function () {
+                                if (isPlaying) {
+                                    // Stop 
+                                    isPlaying = false;
+                                    audio.pause();
+                                    $(this).text("PLAY!");
+                                } else {
+                                    // Play
+                                    isPlaying = true;
+                                    audio.play();
+                                    $(this).text("STOP!")
+
+                                };
+                            });
+                        });
+
+                        //var stopIt = confirm('Stop the music demo?!')
+
+                        //  Step 2: do the following between the --- comments
+                        //  after 5 seconds, execute the fiveSeconds function
+                        //  after 10 seconds, execute the tenSeconds function
+                        //  after 15 seconds, execute the timeUp function
+                        // ---------------------
+
+                        setTimeout(fiveSeconds, 5000);
+                        setTimeout(tenSeconds, 10000);
+                        setTimeout(timeUp, 15000);
+
+                        // ---------------------
 
 
-      function tenSeconds() {
+                        // Step 3:
+                        // Fill in the blanks to these functions.
+                        function fiveSeconds() {
 
-        // in the element with an id of time-left add an h2 saying About 5 Seconds Left!
-        $("#time-left").append("<h2>About 5 seconds left!</h2>")
-        // console log 5 seconds left
-        console.log("5 sec left");
+                            // in the element with an id of time-left add an h2 saying About 10 Seconds Left!
+                            $("#time-left").append("<h2>About 10 sec left!</h2>")
 
-      }
-
-
-      function timeUp() {
-
-        // in the element with an id of time-left add an h2 saying Time's Up!
-        $("#time-left").append("<h2>Time is up!</h2>")
-        // console log done
-        console.log("Done");
-
-        // Stop song when button is clicked
-        $("#stop").click(function () {
-          $(audio).stop();
-        });
+                            //document.getElementById("time-left").innerHTML = "About 10 seconds left!";
+                            // console log 10 seconds left
+                            console.log("10 sec left");
+                        }
 
 
-      };
-    };
+                        function tenSeconds() {
 
-  </script>
+                            // in the element with an id of time-left add an h2 saying About 5 Seconds Left!
+                            $("#time-left").append("<h2>About 5 seconds left!</h2>")
+                            // console log 5 seconds left
+                            console.log("5 sec left");
 
+                        }
+
+
+                        function timeUp() {
+
+                            // in the element with an id of time-left add an h2 saying Time's Up!
+                            $("#time-left").append("<h2>Time is up!</h2>")
+                            // console log done
+                            console.log("Done");
+
+                            // Stop song when button is clicked
+                            $("#stop").click(function () {
+                                $(audio).stop();
+                            });
+
+
+                        };
+                    };
+
+                </script>
+            </div>
+        </div>
+    </div>
 </body>
 
 </html>
